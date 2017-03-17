@@ -62,3 +62,44 @@ Ctrl+v   标记列  d  esc
 gg定位到文件开头
 G 定位到文件末尾
 行号+gg 定位到某一行
+
+
+gnome在windows上打开linux的图形界面
+
+
+Linux用户管理：
+超级用户：root
+普通用户：
+	本地用户：由管理员创建，在自己的宿主目录有完整权限
+	系统用户（伪用户）：一般不会登陆系统，用户维护某个服务程序（相当于内置账户）
+
+
+/etc/passwd  : 保存用户信息
+/etc/shadow  :保存用户的密码信息
+
+/etc/group  : 保存组信息
+/etc/gshadow：保存组密码
+
+
+添加用户：adduser 
+useradd 用户名 -g 所属组  -G 附加组
+	
+felix:x:500:500::/home/felix:/bin/bash
+用户名：密码：uid：gid：：用户描述：宿主目录：使用的shell
+
+id 用户名：查看用户对应的uid
+
+shell分类：
+chsh -l
+
+删除用户:userdel -r 用户名连同宿主目录一起删除
+
+密码文件：/etc/shadow
+root:$1$5pNKFDRt$JV6IJmBdT1bfDn6bKRVPL.:17241:0:99999:7:::
+用户名：密码（加密后的）：最近更改密码的时间：密码不能更改的天数：密码过期天数：剩余7天警告：密码宽限天数:账号过期时间：保留
+
+修改密码： passwd 用户名
+强制修改：echo 密码 | passwd --stdin 用户名
+	
+组分类：
+超级用户组：root
