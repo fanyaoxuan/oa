@@ -198,3 +198,69 @@ make install
 
 top  查看系统运行信息
 
+文档压缩
+tar -zcvf 包名  需要压缩的文件
+tar -zxvf 包名 -C 指定解压的路径
+tar -jcvf 包名 需要压缩的文件
+tar -jxvf 包名 -C 指定解压的路径
+
+
+zip
+zip 包名 压缩的文件
+zip -r 包名 压缩的文件夹
+unzip 包名 -d 指定解压的目录
+
+zcat 查看压缩包的内容
+
+
+du -sh  查看一个文件夹或文件的大小
+file 文件名   查看一个文件的类型
+
+
+
+进程的管理
+ppid  父进程
+进程状态： r状态  休眠s 僵尸进程z
+
+top  查看系统运行信息（按1查看更多的cpu信息）
+up 运行的时间
+ni  表示优先级
+top -p pid  查看对应的pid的进程
+
+空格刷新top信息
+M按内存排序
+P按cpu排序
+
+ps -ef
+ps -aux (x表示显示没有控制终端的进程)
+pstree 可以查看一个进程的进程树结构
+
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+运行的用户 
+vsc 占用的虚拟内存
+rss：固定使用的内存
+stat：进程状态
+	R S  T Z   N L s
+start  启动时间
+time  消耗时间
+
+
+
+free -k 显示内存使用情况
+
+/proc 保存当前运行的进程
+
+
+!$ 表示上一个命令的最后一个参数
+！命令 表示调用最后一个命令
+
+
+kill -9 s
+killall httpd 终止一组进程
+pkill httpd 终止一组进程
+
+
+nice 表示进程的优先级  也可以指定进程的优先级
+nice -n 优先级 执行相关的命令  （以哪种优先级执行）
+renice -n pid  修改正在运行的进程的优先级
