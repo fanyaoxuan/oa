@@ -104,3 +104,97 @@ root:$1$5pNKFDRt$JV6IJmBdT1bfDn6bKRVPL.:17241:0:99999:7:::
 	
 组分类：
 超级用户组：root
+普通用户组：
+	系统用户组：gid（1-999）
+	本地用户组：gid(1000+)
+
+root:x:0:root
+组名：组密码：组id：组包含的用户
+
+控制用户添加的规则：
+默认在/home文件下增加宿主目录
+创建同名的组
+创建隐藏文件
+
+id  查看用户的信息
+w  查看当前系统的登录用户
+who
+whoami  当前登录的用户
+who am i
+
+
+使用救援模式修改系统密码：
+	在加载内核是  rw init=/sysroot/bin/shdd
+	chroot /sysroot 更改根目录
+	passwd  修改密码
+单用户模式修改密码:
+	启动时选择加载内核项，输入1，使用单用户模式启动
+	进入内核，使用passwd进行修改密码
+
+linux基本权限
+rwx 读写执行
+
+-rw-r--r--  1 root root    1615 Aug 30  2001 rpc
+文件权限及类型  文件连接数 所属者  所属组  大小   最后修改日期  文件名
+
+文件类型
+- ：表示二进制文件
+d : 表示目录
+l ：表示软连接
+b : 块文件
+
+权限：
+所属者的权限  所属组的权限  其他人的权限
+
+修改权限 
+chmod 权限 文件名
+chmod g/u/a +- rwx 文件名（也可以使用= 是直接赋值）
+
+修改文件的所属组拥有者
+chown 用户  文件
+chown ：组  文件
+chown 用户：组  文件  -R 递归修改权限
+一个文件的拥有者一定可以写入；
+
+
+默认权限的补码：
+umask  umask -p 修改默认权限补码
+
+软件包管理
+rpm -ivh(安装、详细信息、进度条) 
+rpm -qa 查询所有已安装的软件
+    -qf  查询文件属于哪个软件包
+    -p 查询还未安装的软件包
+    -i  显示软件包信息  
+    -U 升级
+
+rpm -Uvh 升级软件包
+
+rpm -e  卸载软件
+
+
+yum源管理
+yum clean all 清空yum源
+yum list  查询软件包
+
+yum install
+yum check-update
+yum update
+yum info 查看软件包信息
+yum remove  卸载软件
+yum grouplist
+yum groupinstall 
+
+
+源码编译软件安装：
+tar -zxvf   将源码包进行解压
+./configure --prefix=目录  设置安装目录
+	--user=felix 指定安装的用户
+	--group=felix 指定用户组
+echo $?  确定是否执行完毕configure
+make(make -j 4)以4个进程编译为可执行的二进制文件
+make install
+
+
+top  查看系统运行信息
+
