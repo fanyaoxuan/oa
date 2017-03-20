@@ -83,7 +83,7 @@ Linux用户管理：
 
 添加用户：adduser 
 useradd 用户名 -g 所属组  -G 附加组
-	
+useradd -s 指定shell -M 增加用户时不创建家目录	
 felix:x:500:500::/home/felix:/bin/bash
 用户名：密码：uid：gid：：用户描述：宿主目录：使用的shell
 
@@ -91,6 +91,7 @@ id 用户名：查看用户对应的uid
 
 shell分类：
 chsh -l
+cat /etc/shells
 
 删除用户:userdel -r 用户名连同宿主目录一起删除
 
