@@ -84,3 +84,65 @@ hostname  主机名  临时配置主机名
 修改了配置文件需要重启对应的服务
 
 route -n  查看路由信息
+
+
+shell脚本
+
+shell脚本编写：
+	创建shell脚本文件
+		#！/bin/bash
+		执行的命令
+	赋予执行权限
+		chmod 755 shell脚本
+	执行shell脚本
+		sh + 脚本
+
+shell变量
+常用的shell变量：自定义变量、环境变量、位置变量、预定义变量
+可以使用echo来输出变量
+
+自定义变量的定义： Linux=7.2  
+echo=$Linux  输出变量值
+echo=${Linux}system 将两个结果链接起来
+
+read 变量名。。。 简单的交互给变量赋值
+read -p 增加提示信息
+
+shell表达式
+expr $a \* $b
+abc=$(expr $a \* $b)
+
+
+环境变量：
+env  查看当前的环境变量
+
+环境变量的配置文件：/etc/profile
+宿主目录的环境变量：/home/felix/.bash_profile
+
+echo $PATH 查看可执行命令的路径
+
+将写的将脚本添加的环境变量中：
+PATH="$PATH:脚本路径"
+
+立即生效：source /etc/profile
+
+位置变量：使用$0……$9
+
+./add.sh  10  20(其中10为$1  20为$2)  !$表示上一个命令的最后一个参数
+
+
+
+sed  流编辑器：主要用来自动编辑一个或多个文件简化对文件的重复操作
+非交互式编辑文件
+
+sed -n  读取某行的内容
+sed -n "1,3p" 文件  显示前三行
+sed -n "1,3!p" 文件   不显示前三行
+sed -n "3,+3p" wenjian  显示第3行后的三行
+sed '1i##'passwd >> a.t 追加内容
+sed '$a@@@' passwd 在最后追加
+sed '3c$$$' passwd  替换第3行内容
+
+awk ‘{print $0}’ 文件  显示所有的内容
+awk ‘{print $1}’ 文件  显示文件第一列内容
+awk -F:'{print $1}' 文件名
