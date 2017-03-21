@@ -1,0 +1,86 @@
+grep 关键字  文件名    包含关键字的
+grep -v 关键字  文件名 不包含关键字的行
+grep ^# 文件名  以#开头的行
+grep ^$ 文件名  显示以空行开头 （5$）
+
+
+find 目录 -options print 文件名
+按照文件名查找
+find 路径 -name "*.txt"
+find /etc -name "host*"
+按权限查找
+find 路径 -perm 755
+
+按文件拥有者查找
+find 路径 -user 用户名
+find 路径 -group 
+find 路径 -mtime 时间（按照修改时间查找）
+	ctime   改变时间
+	atime   访问时间
+（其中使用-表示距今几天  +表示大于几天的）
+
+按照类型查找
+(b 块设备文件
+ d 目录
+ c 字符设备文件
+ p 管道文件 
+ l 链接文件
+ f 普通文件
+)
+find 路径 -type 
+
+
+find /etc -type d -exec ls {} \;
+
+
+
+计划任务：
+at 只能执行一次
+at 时间点  
+	输入计划执行的命令
+at -l 查看计划任务
+
+atrm + 计划号
+atrm + 执行的命令
+
+
+cron 克隆表达式
+ /etc/crontab  包含了计划任务 
+
+crontab -e 分 时 日 月 星期
+
+*/5 每5分钟
+
+anacron  : 错过时间仍会执行计划任务
+
+
+
+dns  53端口
+smtp 25端口
+https 443端口
+
+ntp 123端口
+tftp 69
+snmp 161
+
+端口号	/etc/services
+
+netstat -anput
+-a  all
+-n  不解析名字
+-p 应用程序
+-u 显示udp
+-t 显示tcp
+
+修改网络
+vim /etc/sysconfig/network-scripts/ifcfg-eth0 
+
+
+修改主机名
+vim /etc/sysconfig/network
+
+hostname  主机名  临时配置主机名
+
+修改了配置文件需要重启对应的服务
+
+route -n  查看路由信息
