@@ -271,3 +271,97 @@ less /etc/services  使用u向上翻页  使用d向下翻页
 用户的默认配置文件：
 /etc/login.defs
 /etc/default/useradd
+
+
+vim中:e!  将文件恢复到最原始的状态
+
+
+
+
+权限管理：
+粘着位   权限为1  标志为t   主要是在同一个目录下所有的用户都可以创建修改删除文件，但只能对拥有的而文件进行操作
+setUid 权限为4  标志为s 在执行的一瞬间使用root权限进性
+guid  权限为2  标志为s  在执行时使用组权限进性操作
+
+修改用户的组：
+usermod -G 组名 用户
+gpasswd -a 用户  组名
+
+gpasswd -A 用户 组名  将用户设置为组的管理员
+gpasswd  组名   为组设置密码
+gpasswd -r 组名  删除组密码
+gpasswd -R 组名   禁止切换到改组
+
+groups 查看属于哪些组
+newgrp  切换组
+id
+
+pwck 检测passwd文件（锁定文件）
+vipw 编辑passwd，锁定文件
+grpck 检测组配置文件
+vigr   编辑group配置文件
+
+chage -l user  查看用户的密码信息
+pwconv  pwunconv  转换密码
+
+
+后台进程在执行的命令后加&即可
+
+pgrep  httpd  查看一个服务的进程
+pkill httpd  杀死一组进程
+
+nohup find / -name init* &  退出系统命令仍后台执行
+
+
+
+bg  1   后台执行
+fg 1  前台执行
+jobs 查看所有的挂起的任务
+
+
+top 
+d  设置刷新时间
+c   查看执行命令的全路径
+u 查看指定的用户进程
+r  修改运行级别
+
+
+计划任务：
+at 时间   编辑命令 （at -f  文件  时间）
+	时间表示
+at.allow  at.deny
+
+
+batch   执行计划任务时，先查看下负载是否在0.8以下
+
+crontab -l  查看一个计划任务
+crontab -r  删除计划任务
+crontab -e 生成计划任务
+
+
+cron.allow  cron.deny 限定用户创建计划任务的限定
+
+
+df -k  显示磁盘分区
+df -h
+df -m
+
+du -sh   查看文件或目录的大小
+
+fsck  修复文件系统
+fsck -y  直接修复文件系统
+
+卸载挂载点
+umount /mnt 卸载挂载点
+eject  弹出光驱
+
+fdisk -l  /dev/sdb  查看硬盘信息
+
+添加硬盘分区
+fdisk /dev/sdb   进行分区
+mkfs  /dev/sdb1     对分区进行格式化
+
+
+
+
+passwd -l felix   锁定felix
