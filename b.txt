@@ -146,3 +146,128 @@ sed '3c$$$' passwd  替换第3行内容
 awk ‘{print $0}’ 文件  显示所有的内容
 awk ‘{print $1}’ 文件  显示文件第一列内容
 awk -F:'{print $1}' 文件名
+
+
+ln -s 文件   软连接名  
+ln 文件  硬链接   （同步更新的，但是时间值不同）
+	同步更新的原理（使用了相同i节点）
+ls -i  查看文件的inode 每个文件肯定都有一个i节点
+
+
+find -ctime/atime/mtime 
+find -cmin/amin/mmin
+
+-a  两个条件都匹配
+-o 任意匹配
+
+-exec 不询问确认
+-ok  询问确认是否执行后面的命令
+
+find /etc -inum 16 -exec rm -rf {} \;
+
+
+locate 根据索引查找第一次执行前，需要先进行updatedb更新索引
+/etc/services 保存了所有的端口信息
+
+
+man  既可以查看命令的帮助也可以查看配置文件的帮助
+man 5 passwd  使用配置文件的帮忙使用5
+man passwd  默认使用的是查看命令的帮助
+
+
+info 跟man相同
+
+
+whatis ls   查看命令的用途
+makewhatis  更新帮助信息
+
+
+
+
+
+
+gzip
+bz2  -t   不解压查看文档内容
+ctrl+u  删除前面所有的命令字符
+
+
+wc -l 统计文件个数
+
+&&
+||   执行命令时使用
+
+which
+
+
+:set ic 忽略大小写
+：%s/old/new/g  全文替换
+:%s/old/new/c  询问是否替换相应的字符
+
+:w 路径  将文件另存为
+
+
+:r 导入相应的文件
+:r !执行的命令  将命令的结果导入文件中
+
+
+
+init.d  存放所有的服务
+rc.d 启动相应级别需要启动的服务
+
+
+
+设置自启动：
+将生成的软连接放到rcn.d文件夹中
+
+chkconfig  --list   查看安装的服务的运行级别和启动情况
+chkconfig --level 2345 服务名称    设置服务在2345的启动情况
+
+ntsysv  图形界面修改服务的启动
+
+dmesg 查看启动过程的信息
+
+：n1,n2s/old/new/g  指定范文替换
+
+
+
+less 中使用Ctrl+b上翻页  ctrl+f  下翻页
+
+
+
+给grub加密：
+grub-md5-crypt   生成密文
+在grub.conf中配置passwd --md5 密文
+
+
+rpm -qf  查询文件隶属于那个软件包
+rpm -qi  查看软件包的信息   rpm -qip
+rpm -ql 查看已经安装的软件包  rpm -qlp 查看未安装的软件包将安装哪些文件
+rpm -qd 查看软件包安装的帮助的文档
+rpm -qc 查询软件包的配置文件
+ -p  查看未安装软件包相关信息
+
+配置文件的注释："
+
+回复指定的文件
+rpm2cpio 软件包 | cpio -idv 文件夹
+
+
+修改本地yum源：
+首先将/mnt/CentOS所有的rpm包cp到一个数据仓库中
+编辑yum.repo.d/CentOS-Base.repo中baseurl字段（指定仓库地址）
+createrepo  -v  数据仓库的路径
+yum clean all
+yum makecache
+yum -y install samba  不提示确认
+
+
+
+less /etc/services  使用u向上翻页  使用d向下翻页
+
+
+/etc/skel  新建用户的文件从这里面cp
+
+
+用户的默认配置文件：
+/etc/login.defs
+/etc/default/useradd
