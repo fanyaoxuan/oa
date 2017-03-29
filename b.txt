@@ -365,3 +365,91 @@ mkfs  /dev/sdb1     对分区进行格式化
 
 
 passwd -l felix   锁定felix
+
+tar -rf backup.tar /etc/passwd  在原有基础上增加文件
+tar -uf backup.tar /etc/passwd  在源文件的基础上修改passwd文件
+
+在打包过程中可以在文件命中增加时间值
+tar -zcvf 、backup/etc_$(date+%F).tar.gz
+
+
+
+
+shell编程：
+
+shell脚本：
+#！/bin/bashell
+# 注释行
+
+赋予可执行权限
+./  执行脚本（sh 脚本）
+
+echo  可以将内容显示出来
+
+
+abc='time is $DATE'  输出为： time is $DATE
+abc="time is #DATE"  输出为： time is 2017-3-28
+(注意''和"" 的区别)
+
+
+unset 变量名  删除变量
+$?  执行上一个命令的返回值（返回为0  上一个命令执行成功  非0 执行不成功）
+$*  程序所有的参数
+$#  程序中的参数个数
+$$ 程序的PID 
+$!  执行上一个后台命令的pid
+
+sh -x read  执行脚本的过程
+
+expr 表达式  算数运算
+
+expr可以嵌套   expr `expr 3 \* 5` / 15
+
+test(用来测试整数 字符串 文件)
+
+test int1 -eq int2  
+[-d $1]  (相当于test -d $1)
+
+
+shell语句：
+if  test条件
+	then 执行命令
+elif  test条件
+	then 执行命令
+else
+fi
+
+（其中使用-o -a  进行条件的关联）
+
+
+循环：
+for  变量名  in  比较列表
+do 
+	执行的命令
+done
+
+
+select 变量  in  选项
+do
+	执行的命令  break终止
+done
+
+
+case  变量  in
+	字符串） 命令
+	字符串） 命令
+	*）  命令   如果没有匹配项
+esac
+
+while 判断条件 
+do
+	执行命令
+done
+
+
+
+
+awk -F：域分隔符  ‘命令’  文件
+awk -F:
+
+
