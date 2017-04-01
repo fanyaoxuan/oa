@@ -1,0 +1,95 @@
+字符串函数：
+upper()
+lower()
+length()
+initcap()
+substr();  select substr('helloworld',1,5) from dual;
+
+数值函数：
+round() 不写小数位，保留整数四舍五入
+trunc() 只截取不进位
+mod() 求模
+
+日期函数：
+伪列 sysdate/systimestamp
+
+日期的计算：
+sysdate -7  
+
+准确的日期处理函数：
+add_months()  增加月数
+months_between() 指定两个日期之间的月数
+last_day() 取得所在月的最后一天
+next_day（） 返回指定日期的下个星期
+
+
+
+转换函数：
+to_char(数字,格式) 
+	实现日期数据的拆分
+to_char(sysdate,'yyyy')  取出年
+格式化数字：
+to_char(14345,'L999,999,999') from dual;
+
+
+to_date(字符串，格式)
+select to_date('1991-02-20','yyyyMMdd') from dual;
+
+to_number(字符串)  转换为数字
+
+通用函数：
+nvl() 如果为null，则使用默认值
+decode()
+
+
+多表查询：
+内连接 inner join on
+左外连接 left join on
+右外连接 right join on
+全连接 full join
+自然连接 nature join on  USING 设置条件
+交叉连接 cross join
+
+
+
+数据集合操作（两个查询结果的列必须相同）：
+union  去重
+union all
+intsect   作用：  取交集
+minus  作用：取差集
+
+
+分组统计规则：
+group by  必须放在order by 之前
+没有group by子句则select中只能使用统计函数， 不能出现其他字段
+含有group by子句，select中只能出现group by中出现的字段
+统计函数允许嵌套，但select子句中不能出现任何字段
+
+
+
+分组统计查询group by...having
+
+统计函数
+count()  不记录null值
+max()
+min()
+avg()
+sum()
+
+
+where 发生在group by之前，where子句不允许使用统计函数
+having 发生在group by 之后，having可以使用统计函数
+
+
+NOT IN 中不能为null  否则不会有任何结果
+
+=any 与in相同
+>any  大于其中的最小值即可
+<any  小于最大的值即可
+
+>all 大于最大的
+<all 小于最小的
+
+多表查询与子查询：
+子查询解决了多表查询的性能问题（笛卡尔积问题）
+
