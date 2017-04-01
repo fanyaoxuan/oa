@@ -93,3 +93,180 @@ NOT IN 中不能为null  否则不会有任何结果
 多表查询与子查询：
 子查询解决了多表查询的性能问题（笛卡尔积问题）
 
+insert into 表名（） values ();
+
+‘字符串’  数字  日期
+
+update myemp  set 列明=‘值’
+where 条件
+
+更新时，其他的用户不能同时修改
+
+
+删除操作：
+delete from 表明 where 条件
+
+事务处理：
+commit
+rollback
+
+
+死锁形成，两个session同时更新某条数据，而不进行提交
+
+
+
+数据伪列：
+rownum/rowid
+rownum是动态生成的，不是固定的
+	作用：取出第一行记录
+	      取出前n行记录
+实现分页的重要依据，
+select *
+from (
+	select rownum rn,e.*
+	from emp
+	where rownum <= 10
+)
+where rn > 5;
+
+
+rowid:物理编号
+AAAMfP	      AAE	    AAAAAg	AAA
+数据对象编号  保存文件编号   保存的块号   行号
+
+
+表的创建与操作：
+数据类型：
+varchar2(n)： n表示最大的长度，一般保存比较小的内容（200字以内建议生用）
+number(n,m)
+date
+clob  大文本数据，4G是顶
+blob 二进制数据，二进制数据
+
+
+数据字典：
+用户级别： user_*开头
+管理员级别：dba_*开头
+全部级别：all_*开头
+
+oracle中执行了DDL操作，所有未提交的事务将自动提交
+
+
+截断表：
+truncate table 表名  不会恢复数据
+
+
+drop table emp;  删除表
+drop table emp  purge;强制删除数据表(不能闪回)
+
+闪回技术（flash back）：类似windows的回收站
+
+select * from user_recyclebin;
+通过回收站，恢复已删除的表
+flashback table 表名 to before drop;(从之前删除的状态恢复)
+
+
+删除回收站的数据表：
+purge table emp; 删除回收站中的一张表
+purge recyclebin;
+
+
+修改表结构：
+alter tabel 表名
+add （列名  数据类型 default 默认值）；
+增加列后所有的值为空值
+
+修改列名
+alter table 表名
+modify (列名 数据类型 default 默认值) 
+
+alter table 表名
+drop column 列名
+
+
+
+脚本
+*.sql
+--删除表结构
+DROP table member purge;
+--创建表
+create tabel member();
+--测试数据
+insert into 表  values()
+--事务提交
+commit
+
+
+
+
+约束：
+	约束的信息通过表user_constraints查询
+	也可以通过user_cons_columns查看详细信息
+
+非空约束（not null）：
+	create tabel member(
+		mid number,
+		name varchar2(20) not null
+	) 
+唯一约束(unique,nk):
+	create table member(
+		mid number,
+		email varchar2(20) unique
+	) 
+	
+	空值并不受唯一约束的限定。
+	create table member(
+		mid number,
+		email varchar2(20),
+		constraint 约束名 unique(列名)
+	) 
+	
+主键约束(primary key,pk)
+	一张表一个主键
+	create table member(
+		mid number,
+		email varchar2(20),
+		constraint 约束名 primary key(列名)
+	) 
+	一张表多个主键（复合主键）
+	create table member(
+		mid number,
+		email varchar2(20),
+		constraint 约束名 primary key(列名，列名)
+	) 
+检查约束（check,ck）
+	create tabel member(
+		mid number,
+		age number(3),
+		constraint 约束名 check(age between 0 and 250)
+	)
+
+外键约束（foreign key，fk）
+	create tabel member(
+		mid number,
+		age number(3),
+		deptno number,
+		constraint 约束名 foreign key(deptno) refrences dept(deptno)
+	)
+
+
+	强制删除存在外键关系的表：
+	drop table 表名 cascade constraint;
+
+	数据的级联操作：
+	create tabel member(
+		mid number,
+		age number(3),
+		deptno number,
+		constraint 约束名 foreign key(deptno) 
+		refrences dept(deptno) on delete cascade;
+	)
+
+	级联更新：
+	create tabel member(
+		mid number,
+		age number(3),
+		deptno number,
+		constraint 约束名 foreign key(deptno) 
+		refrences dept(deptno) on delete set null;
+	)
