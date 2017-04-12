@@ -270,3 +270,97 @@ commit
 		constraint 约束名 foreign key(deptno) 
 		refrences dept(deptno) on delete set null;
 	)
+
+修改约束：
+alter table emp
+modify ()
+
+exists()  针对一个数据行进行验证
+not exists()
+
+
+
+复合主键：
+constraint pk_main primary key(no,no);
+
+
+检查约束：
+constraint ck_main check(检查条件)；
+
+外键约束：
+constraint fk_main freign key (no) references emp(no);
+
+强制删除(忽略外键关系)：
+drop table  test casade constraint;
+
+序列：
+表 约束 序列 同时出现
+
+自动增长列
+create sequence 序列名
+drop sequence 序列名
+
+序列名称
+min_value最小值
+max_value最大值
+increment_by 步长
+cy   是否循环
+cache_size  缓存
+last_number  最后一次（缓存*步长）
+
+序列对象.nextval   取下一个序列
+序列对象.currval  取当前的序列
+
+alter sequence myseq
+set increment_by 2
+
+
+同义词：在其他用户中可以查询表
+
+drop synonym 同义词名称
+create synonym 同义词名称 for 表名
+create synonym myemp for scott.emp
+
+如果同义词需要在所有的用户下使用需要创建public同义词
+create public sysnoym 同义词名称 for 表名
+
+
+视图的定义：复杂查询的sql语句对象，最要用来简化查询
+视图保存的是临时数据
+
+create view 视图名 as 子查询
+create or replace  view 视图名 
+as 子查询（如果不存在则创建，存在则替换）
+with check option  检查视图条件
+with read only 只读视图
+
+
+
+索引：  当修改字段频繁时该字段不适合使用索引
+create index 索引名 on 表名（字段）
+
+set autotrace on
+
+
+创建用户
+create user 用户名 identified by 密码
+grant create sesson to 用户名
+grant connect,resource to 用户名
+
+
+alter user 用户 identified by 密码
+alter user 用户 password expire
+alter user 用户 account lock
+alter user 用户 account unlock 
+
+grant select,insert on scott.emp to 用户
+
+
+回收权限
+revoke connect,resource from 用户名
+drop user 用户名 casace
+
+
+三大范式：
+字段不可再分（比如date日期不能分）
+两个列之间不要存在关系（需要形成多对多的关系）
