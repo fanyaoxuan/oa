@@ -364,3 +364,176 @@ drop user 用户名 casace
 三大范式：
 字段不可再分（比如date日期不能分）
 两个列之间不要存在关系（需要形成多对多的关系）
+
+
+索引的原则：
+不要有的字段都创建索引
+update操作多不建议创建索引
+字段少不创建索引
+
+
+索引碎片需要手动维护。
+
+
+pl/sql由3部分组成：
+声明部分declare  
+
+执行部分  begin
+
+异常部分  exception
+end；
+
+
+执行pl/sql   F8或/执行
+set serverout on  显示结果
+
+
+dbms_output.put_line();  在控制台输出
+
+赋值  :=
+
+i  constant   number := 100;  定义一个常量
+
+
+pl/sql注意事项
+pl/sql不能将数据直接查出来 需要将查出来的数据保存到变量中
+在select 语句中使用into将每个值赋值给变量
+
+
+i  test.empno%type;  定义一个变量i 与empno字段的类型一致
+
+
+i test%rowtype   :  i表示的就是一行(i.字段)
+
+varray 可变数组
+
+type 类型名称 is varray(数组长度) of varchar2(10)  在这个类型中保存一个varchar的数组
+必须使用变量指向这个类型数组
+v_str strings:= strings('','','');
+
+
+table  类似一个永久的数组
+type tables is table of varchar2(10)
+index by binary_integer  下标无线
+必须使用变量指向
+
+
+
+record  类似java中的集合
+type v_record is record(
+	id number,
+	v_student test%rowtype
+)
+
+
+流程控制：
+if()   then 
+elsif()   then
+elsif()   then 
+。。。。
+else   then
+
+end if;
+
+
+循环控制：
+loop
+	i :=i+1;
+	if(i =5) then exit；（exit when i=5）
+
+end loop
+使用  《outer》表示外循环  《inner》表示内循环
+
+exit outer when i= 5  退出外循环
+
+
+
+for循环
+for i  in reverse(倒序) 1..5 loop
+
+end loop;
+
+while i<5  loop
+
+end loop;
+
+
+
+异常处理 ：
+预定义异常
+非预定义异常
+自定义异常
+
+declare 
+begin
+exception
+	when   then
+	when  then
+	when others then
+	
+sqlcode  错误代码
+sqlerrm 错误消息
+
+
+
+
+游标 就是用来暂存查询出的多条记录
+cursor c_name is select * from emp;
+
+带参数的游标
+cursor v_name(v_cla_id number) is select * from emp where id = c_cla_id;
+r_name emp%rowtype;
+
+打开游标
+open c_name
+
+提取数据：
+fetch c_name into r_name
+
+关闭游标
+close c_name
+
+
+
+存储过程：
+主要包含四类：
+	过程：无返回结果
+	函数：又返回结果
+	包：定义过程和函数的地方
+	触发器：事件触发执行操作
+
+
+不带参数存储过程：
+create or replace proceduces cunchuguocheng   is 
+	v_sex varchar(18) := '男';
+begin
+	insert into 
+end cunchuguocheng;
+
+带参数的存储过程：
+create or replace proceduces cunchuguocheng   canshu (
+	id varchar2;
+	name varchar2;
+	sex number;
+) is
+
+begin
+
+end cunchuguocheng;
+
+
+函数：
+create or replace function fun  return number is
+
+begin 
+end;
+
+create or replace function fun(v_sal number) return number is
+begin
+end;
+
+
+
+包：  包头 和包体
+包头：
+
