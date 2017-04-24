@@ -50,3 +50,41 @@
 删除外键约束	alter table test		alter table test
 		drop constraint fk_test		drop foreign key fk_test;
 
+
+
+
+JVM
+method area :方法区，加载java api
+heap：堆内存，公共的，主要加载对象
+java stack：栈内存，每个线程都有一个独有的栈内存，主要保存临时变量
+pc registers：寄存器，主要保存执行的指令
+native method stacks:调用native method interface
+
+
+jvm:
+	young(新生代)：
+		伊甸园
+		幸存区
+	老年代（Tenured）:
+	Perm(持久代)：就是method area
+jvm参数：
+	-Xmx   最大内存空间（新生代和养老代）
+	-xms	可使用的最小内存空间（新生代和养老代除了预留空间）
+	-XX:newsize  新生代的空间（伊甸园区和幸存区）
+	-XX:maxnewsize  新生代最大的内存空间（伊甸园区和幸存区和保留区）
+	-XX:permsize	持久区的内存空间（不包含保留区）
+	-XX:maxpermsize 持久去的最大内存空间（包含保留区）
+
+TOMCAT
+server
+service
+engine
+host  （context  realm）
+
+
+
+Nginx
+worker_process    进程个数
+worker_connections  默认的并发连接数（每个进程）
+mime.types    包含所有的文件类型
+
