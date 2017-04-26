@@ -1,7 +1,78 @@
-���ģʽ��
-	����ģʽ
-	����ģʽ
-	������ģʽ �� ʵ�ֽӿڵ�һ���ַ������Ӷ��̳иó����� 
-	����ģʽ
-	װ��ģʽ
-	���������ģʽ��  �����Ӵ���򵥻�
+设计模式：
+	单例模式
+	代理模式
+	适配器模式 ： 实现接口的一部分方法，从而继承该抽象类 
+	工厂模式
+	装配模式
+	责任链设计模式：  将复杂代码简单化
+	
+	select version();  查看数据库版本
+show charset;  查看支持的字符集
+select database();
+show databases;  查看所有的数据库
+select curuser();  查看当前的用户
+select user();
+
+select now();  查看当前的时间
+
+use test;  切换数据库
+
+show engines;  查看支持的引擎
+
+
+
+Hibernate
+
+javabean 必须是非final的类，因延迟加载需要创建代理对象，实现延迟加载
+	javassist
+
+
+核心api
+configuration
+session
+sessionfactory
+transaction
+query
+criteria
+
+
+4种生成表策略：
+create 	删除-创建
+create-drop  删除-创建-删除
+update  表存在结构一致保持不变 结构不一致则更新（是新增的）  表不存在则创建
+validate 验证表结构 必须一致（映射只能少不能多）
+
+
+mysql  4种隔离级别
+读未提交
+读已提交
+重复读  
+串行化，不可并发
+
+
+oracle 2中隔离界别
+读已提交
+串行化
+
+
+持久化的状态：
+临时状态   
+持久化状态
+游离状态
+删除状态
+
+
+save/persist 区别：   游离对象的处理不同
+get  支持缓存利用缓存 （session一级缓存）  
+load 支持延迟加载，代理完成 ，访问非主键时才会发送查询语句
+update (在class中select-before-update,数据相同不更新)
+	不能更新一个游离对象，缓存中存在相同的OID
+	持久化对象修改属性，不需要进行更新
+	更新一个游离对象
+saveOrUpdate （id中unsaved-value 相同不进行保存 ）
+	游离对象：已存在进行更新，不存在进行保存
+
+delete（user-identifier-rollback  对象置为null）
+	游离对象
+	持久化对象：
+	
