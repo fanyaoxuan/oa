@@ -76,3 +76,10 @@ delete（user-identifier-rollback  对象置为null）
 	游离对象
 	持久化对象：
 	
+dynamic-insert   dynamic-update  动态的插入或更新
+
+派生属性：formula="(select count*price from from _book)"通过计算的
+
+单向多对一：
+	保存时先保存拥有外键的一端
+	查询时关联端延迟加载
